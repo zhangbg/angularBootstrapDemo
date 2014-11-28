@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="angularDemoApp">
+  <head>
+    <title>Angular Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+  </head>
+  <body ng-controller="listCtrl">
+    <h1>Angular Demo</h1>
+	<hr/>
+	<div class="container-fluid">
+	  <div class="row-fluid subcontainer">
+		<div class="span7 leftside">
+		  <!--Sidebar content-->
+		  <h2>Smart Table</h2>
+		  <hr/>
+			<table st-table="rowCollection" class="table">
+				<thead>
+				<tr>
+					<th st-sort="getters.firstName">first name</th>
+					<th st-sort="lastName">last name</th>
+					<th st-sort="birthDate">birth date</th>
+					<th st-sort="balance" st-skip-natural="true" >balance</th>
+					<th>email</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr st-select-row="row" ng-repeat="row in rowCollection" ng-click="selectRow(row)">
+					<td>{{row.firstName | uppercase}}</td>
+					<td>{{row.lastName}}</td>
+					<td>{{row.birthDate | date}}</td>
+					<td>{{row.balance | currency}}</td>
+					<td><a ng-href="mailto:{{row.email}}">email</a></td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<h2>Normal Table</h2>
+			<hr/>
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>first name</th>
+					<th>last name</th>
+					<th>birth date</th>
+					<th>balance</th>
+					<th>email</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="row in rowCollection">
+					<td>{{row.firstName | uppercase}}</td>
+					<td>{{row.lastName}}</td>
+					<td>{{row.birthDate | date}}</td>
+					<td>{{row.balance | currency}}</td>
+					<td><a ng-href="mailto:{{row.email}}">email</a></td>
+				</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		<div class="span5 rightside">
+			<form class="form-horizontal appForm">
+			  <div class="control-group">
+				<label class="control-label" for="firstname">first name</label>
+				<div class="controls">
+				  <input type="text" id="firstname" placeholder="first name" value="{{selectedRow.firstName | uppercase}}" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="lastname">last name</label>
+				<div class="controls">
+				  <input type="text" id="lastname" placeholder="last name" value="{{selectedRow.lastName}}" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="birthdate">birth date</label>
+				<div class="controls">
+				  <input type="text" id="birthdate" placeholder="birth date" value="{{selectedRow.birthDate | date:'yyyy-MM-dd HH:mm:ss'}}" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="balance">balance</label>
+				<div class="controls">
+				  <input type="text" id="balance" placeholder="balance" value="{{selectedRow.balance | currency:'RMB'}}" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="email">email</label>
+				<div class="controls">
+				  <input type="text" id="email" placeholder="email" value="{{selectedRow.email}}" />
+				</div>
+			  </div>
+			</form>
+		</div>
+	  </div>
+	</div>
+	
+	<script src="js/lib/jquery.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+	<script src="js/lib/angular1.3.js"></script>
+	<script src="js/lib/smart-table.debug.js"></script>
+	
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+  </body>
+</html>
