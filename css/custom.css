@@ -26,7 +26,7 @@
 	height: 100%;
 }
 
-.appForm {
+.appForm , .secondForm {
 	position: relative;
 	margin: 15px 0;
 	padding: 39px 19px 14px;
@@ -37,7 +37,7 @@
 	border-radius: 4px;
 }
 
-.appForm:after {
+.appForm:after , .secondForm:after{
 	content: "Detail";
 	position: absolute;
 	top: -1px;
@@ -53,3 +53,6 @@
 	border-radius: 4px 0 4px 0;
 }
 
+.secondForm:after {
+	content: "Note";
+}

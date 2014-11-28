@@ -18,8 +18,21 @@ controllers.controller('listCtrl', ['$scope', '$filter', function (scope, filter
 	scope.selectRow = function (row) {
 		scope.selectedRow = row;
 	};
-	// scope.selectedRow = scope.rowCollection[0];
+	scope.selectedRow = scope.rowCollection[0];
 	setTimeout(function () {
 		$('table[st-table="rowCollection"] tbody tr:eq(0)').trigger('click');
 	}, 10);
+	
+	//Smart Table With 8000 rows
+	var moreRows = [], tempRow = {}, count = 0;
+	for (var i = 0; i < 80; i ++) {
+		tempRow = {};
+		tempRow.firstName = 'Renard_' + (i + 1);//(function (a){return 'Renard_' + (a + 1);})(i);;
+		tempRow.lastName = 'Renard';
+		tempRow.birthDate = new Date(1987, 10, 9, 12, 23, 12);
+		tempRow.balance = 102;
+		tempRow.email = 'whatever@gmail.com';
+		moreRows.push(tempRow);
+	}
+	scope.moreRows = moreRows;
 }]);
