@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html ng-app="angularDemoApp">
+  <head>
+    <title>Angular Demo2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/ui-grid.css" rel="styleSheet" media="screen"/>
+    <link href="css/custom2.css" rel="stylesheet" media="screen">
+  </head>
+  <body ng-controller="listCtrl">
+    <h1>Angular Demo2</h1>
+	<hr/>
+	<div class="container-fluid">
+	  <div class="row-fluid subcontainer">
+		<div class="span7 leftside">
+		  <!--Sidebar content-->
+			<h2>UI Grid</h2>
+			<hr/>
+			<div>
+				<div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+				<!-- <div id="grid1" ui-grid-selection ui-grid="{ data: rowCollection }" class="grid"></div> -->
+			</div>
+			<!-- <table st-table="rowCollection" class="table">
+				<thead>
+				<tr>
+					<th st-sort="getters.firstName">first name</th>
+					<th st-sort="lastName">last name</th>
+					<th st-sort="birthDate">birth date</th>
+					<th st-sort="balance" st-skip-natural="true" >balance</th>
+					<th>email</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr st-select-row="row" ng-repeat="row in rowCollection" ng-click="selectRow(row)">
+					<td>{{row.firstName | uppercase}}</td>
+					<td>{{row.lastName}}</td>
+					<td>{{row.birthDate | date}}</td>
+					<td>{{row.balance | currency}}</td>
+					<td>{{row.email}}</td>
+				</tr>
+				</tbody>
+			</table> -->
+			
+			<h2>Normal Table</h2>
+			<hr/>
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>first name</th>
+					<th>last name</th>
+					<th>birth date</th>
+					<th>balance</th>
+					<th>email</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="row in rowCollection">
+					<td>{{row.firstName | uppercase}}</td>
+					<td>{{row.lastName}}</td>
+					<td>{{row.birthDate | date}}</td>
+					<td>{{row.balance | currency}}</td>
+					<td><a ng-href="mailto:{{row.email}}">email</a></td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<!-- <h2>Smart Table With 20,000 rows(Awful!)</h2>
+			<hr/>
+			<table st-table="moreRows" class="table-striped table">
+				<thead>
+				<tr>
+					<th st-sort="getters.firstName">first name</th>
+					<th st-sort="lastName">last name</th>
+					<th st-sort="birthDate">birth date</th>
+					<th st-sort="balance" st-skip-natural="true" >balance</th>
+					<th>email</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="mrow in moreRows">
+					<td>{{mrow.firstName | uppercase}}</td>
+					<td>{{mrow.lastName}}</td>
+					<td>{{mrow.birthDate | date}}</td>
+					<td>{{mrow.balance | currency}}</td>
+					<td>{{mrow.email}}</td>
+				</tr>
+				</tbody>
+			</table> -->
+			
+		</div>
+		<div class="span5 rightside">
+			<form class="form-horizontal appForm">
+			  <div class="control-group">
+				<label class="control-label" for="firstname">first name</label>
+				<div class="controls">
+				  <input type="text" id="firstname" placeholder="first name" ng-model="selectedRow.firstName" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="lastname">last name</label>
+				<div class="controls">
+				  <input type="text" id="lastname" placeholder="last name" ng-model="selectedRow.lastName" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="birthdate">birth date</label>
+				<div class="controls">
+				  <input type="date" id="birthdate" placeholder="birth date" ng-model="selectedRow.birthDate" /> <!--| date:'yyyy-MM-dd HH:mm:ss'-->
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="balance">balance</label>
+				<div class="controls">
+				  <input type="text" id="balance" placeholder="balance" value="{{selectedRow.balance | currency:'RMB'}}" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="email">email</label>
+				<div class="controls">
+				  <input type="email" id="email" placeholder="email" ng-model="selectedRow.email" />
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="oneWayDataBinding">oneWayDataBinding for last name</label>
+				<div class="controls">
+					<span class="text-warning">{{selectedRow.lastName}}</span>
+				  <input type="text" id="oneWayDataBinding" placeholder="oneWayDataBinding" value="{{selectedRow.lastName}}" />
+				</div>
+			  </div>
+			</form>
+			<form class="form-horizontal secondForm">
+				<blockquote>
+					<p>The key directive in understanding two-way data-binding is ngModel. 
+						The ngModel directive provides the two-way data-binding by synchronizing the model to the view, as well as view to the model. 
+						In addition it provides an <a ng-href="https://docs.angularjs.org/api/ng/type/ngModel.NgModelController">api</a> for other directives to augment its behavior.
+					</p>
+					<small>This note come from <a ng-href="https://docs.angularjs.org/guide/forms">AngularJS develop guide</a></small>
+				</blockquote>
+				<pre>
+<h5>The different code for this demo as follow:</h5>&lt;input type="text" id="lastname" placeholder="last name" ng-model="selectedRow.lastName" /&gt; 
+&lt;input type="text" id="lastname" placeholder="last name" value="\{\{selectedRow.lastName\}\}" /&gt;
+				</pre>
+			</form>
+		</div>
+	  </div>
+	</div>
+	
+	<script src="js/lib/jquery.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+	<script src="js/lib/angular1.3.js"></script>
+	<script src="js/lib/ui-grid.js"></script>
+	
+    <script src="js/app2.js"></script>
+    <script src="js/controllers2.js"></script>
+  </body>
+</html>
