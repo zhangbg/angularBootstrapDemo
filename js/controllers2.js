@@ -33,7 +33,7 @@ controllers.controller('listCtrl', ['$scope', '$interval', function (scope, inte
         {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
     ];
 	
-	// $interval( function() {$scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);}, 0, 1);
+	interval( function() {scope.gridApi.selection.selectRow(scope.gridOptions.data[0]);}, 0, 1);
 
 	/* scope.selectRow = function (row) {
 		scope.selectedRow = row;
